@@ -25,6 +25,7 @@ export interface XmrEvents {
     connected: () => void;
     disconnected: () => void;
     error: (e: string) => void;
+    statusChange: (status: string) => void;
 
     collectNow: () => void;
     screenShot: () => void;
@@ -167,7 +168,7 @@ export default class Xmr {
             console.debug(event);
 
             this.lastMessageAt = DateTime.now();
-            // window.state.lastXmrMessage = this.lastMessageAt;
+            this.emitter.emit('statusChange', this.lastMessageAt.toISO() || '');
 
             // Expect a JSON message or a H
             if (event.data === 'H') {
