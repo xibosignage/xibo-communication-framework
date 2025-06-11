@@ -106,7 +106,18 @@ const config: RollupOptions[] = [
                 format: 'esm',
             }
         ],
-    }
+    },
+    {
+        ...commonInputOptions,
+        plugins: [commonInputOptions.plugins],
+        output: [
+            {
+                file: `${outputPath}${libName}.amd.js`,
+                format: 'amd',
+                sourcemap: true,
+            }
+        ],
+    },
 ];
 
 export default config;
