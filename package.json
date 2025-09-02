@@ -1,6 +1,6 @@
 {
   "name": "@xibosignage/xibo-communication-framework",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Xibo Communication Framework",
   "main": "dist/xibo-communication-framework.cjs.js",
   "module": "dist/xibo-communication-framework.esm.js",
@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run build",
     "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript"
   },
   "repository": {
