@@ -8,8 +8,16 @@
   "types": "dist/xibo-communication-framework.d.ts",
   "type": "module",
   "exports": {
-    "import": "./dist/xibo-communication-framework.esm.js",
-    "require": "./dist/xibo-communication-framework.cjs"
+    ".": {
+      "import": {
+        "types": "dist/xibo-communication-framework.d.ts",
+        "default": "./dist/xibo-communication-framework.esm.js"
+      },
+      "require": {
+        "types": "dist/xibo-communication-framework.d.ts",
+        "default": "./dist/xibo-communication-framework.cjs"
+      }
+    }
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
