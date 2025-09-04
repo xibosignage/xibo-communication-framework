@@ -102,7 +102,7 @@ const config: RollupOptions[] = [
         plugins: [commonInputOptions.plugins],
         output: [
             {
-                file: `${outputPath}${libName}.cjs.js`,
+                file: `${outputPath}${libName}.cjs`,
                 format: 'cjs',
                 sourcemap: true,
                 exports: 'named',
