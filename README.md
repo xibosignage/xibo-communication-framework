@@ -48,3 +48,52 @@ let xmrWebSocketAddress = config.getSetting(
 );
 xmr.start(xmrWebSocketAddress, config.getSetting('xmrCmsKey', 'n/a'));
 ```
+
+### XMR Events
+There are existing events that are already defined that correspond to actions done from the CMS.
+
+`collectNow`
+
+An action in the CMS through a Display that overrides the collection interval function.
+
+`screenShot`
+
+An action in the CMS through a Display that requests a screenshot from the player and made available in the CMS for the related display.
+
+`licenceCheck`
+
+An action in the CMS through a Display that checks the licence of the player.
+
+`showStatusWindow`
+
+A Display command “Show Status Window” which shows the status window in the player. (In this case, ChromeOS player)
+
+`forceUpdateChromeOS`
+
+A Display command “Force update ChromeOS” that forces the ChromeOS player to update to the set version from the display settings.
+
+These events are available through this TypeScript interface below. We can add events through this interface.
+
+```typescript
+export interface XmrEvents {
+  connected: () => void;
+  disconnected: () => void;
+  error: (e: string) => void;
+  statusChange: (status: string) => void;
+  collectNow: () => void;
+  screenShot: () => void;
+  licenceCheck: () => void;
+  showStatusWindow: (timeout: number) => void;
+  forceUpdateChromeOS: () => void;
+}
+```
+
+On the consuming player, we can listen to these events and make necessary actions using a callback.
+
+```typescript
+...
+xmr.on('collectNow', () => {
+  xmds.collectNow();
+});
+...
+```
