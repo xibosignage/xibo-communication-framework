@@ -4,8 +4,6 @@
   "description": "Xibo Communication Framework",
   "main": "dist/xibo-communication-framework.cjs",
   "module": "dist/xibo-communication-framework.esm.js",
-  "typings": "dist/xibo-communication-framework.d.ts",
-  "types": "dist/xibo-communication-framework.d.ts",
   "type": "module",
   "exports": {
     ".": {
