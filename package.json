@@ -7,16 +7,12 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": {
-        "types": "dist/xibo-communication-framework.d.ts",
-        "default": "./dist/xibo-communication-framework.esm.js"
-      },
-      "require": {
-        "types": "dist/xibo-communication-framework.d.ts",
-        "default": "./dist/xibo-communication-framework.cjs"
-      }
+      "import": "dist/xibo-communication-framework.esm.js",
+      "require": "dist/xibo-communication-framework.cjs",
+      "types": "dist/xibo-communication-framework.d.ts"
     }
   },
+  "types": "dist/xibo-communication-framework.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "npm run build",
