@@ -53,7 +53,11 @@ const commonInputOptions: InputOptions = {
             babelHelpers: 'bundled',
             presets: ['@babel/preset-env'],
         }),
-        typescriptPlugin(),
+        typescriptPlugin({
+            compilerOptions: {
+                target: 'es5',
+            },
+        }),
         analyzerPlugin({
           summaryOnly: true,
         }),

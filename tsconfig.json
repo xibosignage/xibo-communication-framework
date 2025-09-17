@@ -4,8 +4,8 @@
     "rollup.config.ts",
   ],
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ES2022",
+    "target": "es5",
+    "module": "esnext",
     // use Node's module resolution algorithm, instead of the legacy TS one
     "moduleResolution": "node",
     "noEmitOnError": true,
