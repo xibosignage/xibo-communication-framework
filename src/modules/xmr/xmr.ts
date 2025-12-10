@@ -39,6 +39,7 @@ export interface XmrEvents {
             ttl: number
         }[]
     ) => void;
+    currentGeoLocation: () => void;
 }
 
 export default class Xmr {
@@ -202,6 +203,8 @@ export default class Xmr {
                     this.emitter.emit('showStatusWindow', parseInt(split[1]) || 60);
                 } else if (message.action == 'commandAction' && message.commandCode.startsWith('forceUpdateChromeOS')) {
                     this.emitter.emit('forceUpdateChromeOS');
+                } else if (message.action == 'commandAction' && message.commandCode.startsWith('currentGeoLocation')) {
+                    this.emitter.emit('currentGeoLocation');
                 } else if (message.action == 'criteriaUpdate') {
                     this.emitter.emit('criteriaUpdate', message.criteriaUpdates);
                 } else {
