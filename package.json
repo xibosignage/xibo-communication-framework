@@ -1,6 +1,6 @@
 {
   "name": "@xibosignage/xibo-communication-framework",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Xibo Communication Framework",
   "main": "./dist/xibo-communication-framework.cjs",
   "module": "./dist/xibo-communication-framework.esm.js",
