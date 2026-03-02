@@ -1,4 +1,2 @@
-export {
-    default as Xmr,
-    XmrEvents,
-} from './xmr';
+export type {XmrEvents} from './xmr';
+export {default as Xmr} from './xmr';
