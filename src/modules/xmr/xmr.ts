@@ -38,7 +38,7 @@ export interface XmrEvents {
         }[]
     ) => void;
     commandCodeReceived: (commandCode: string) => void;
-    dataUpdate: () => void;
+    dataUpdate: (widgetId: number) => void;
 }
 
 export default class Xmr {
@@ -202,7 +202,7 @@ export default class Xmr {
                 } else if (message.action == 'commandAction') {
                     this.emitter.emit('commandCodeReceived', message.commandCode);
                 } else if (message.action == 'dataUpdate') {
-                    this.emitter.emit('dataUpdate');
+                    this.emitter.emit('dataUpdate', message.widgetId);
                 } else {
                     console.error('Xmr::message: unknown action: ' + message.action);
                 }
