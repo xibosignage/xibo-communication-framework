@@ -30,8 +30,6 @@ export interface XmrEvents {
     collectNow: () => void;
     screenShot: () => void;
     licenceCheck: () => void;
-    showStatusWindow: (timeout: number) => void;
-    forceUpdateChromeOS: () => void;
     criteriaUpdate: (
         criteriaUpdates: {
             metric: string;
@@ -39,7 +37,8 @@ export interface XmrEvents {
             ttl: number
         }[]
     ) => void;
-    currentGeoLocation: () => void;
+    commandCodeReceived: (commandCode: string) => void;
+    dataUpdate: (widgetId: number) => void;
 }
 
 export default class Xmr {
@@ -198,15 +197,12 @@ export default class Xmr {
                     this.emitter.emit('screenShot');
                 } else if (message.action === 'licenceCheck') {
                     this.emitter.emit('licenceCheck');
-                } else if (message.action == 'commandAction' && message.commandCode.startsWith('showStatusWindow')) {
-                    const split = message.commandCode.split('|');
-                    this.emitter.emit('showStatusWindow', parseInt(split[1]) || 60);
-                } else if (message.action == 'commandAction' && message.commandCode.startsWith('forceUpdateChromeOS')) {
-                    this.emitter.emit('forceUpdateChromeOS');
-                } else if (message.action == 'commandAction' && message.commandCode.startsWith('currentGeoLocation')) {
-                    this.emitter.emit('currentGeoLocation');
                 } else if (message.action == 'criteriaUpdate') {
                     this.emitter.emit('criteriaUpdate', message.criteriaUpdates);
+                } else if (message.action == 'commandAction') {
+                    this.emitter.emit('commandCodeReceived', message.commandCode);
+                } else if (message.action == 'dataUpdate') {
+                    this.emitter.emit('dataUpdate', message.widgetId);
                 } else {
                     console.error('Xmr::message: unknown action: ' + message.action);
                 }
