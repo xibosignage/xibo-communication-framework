@@ -40,6 +40,7 @@ export interface XmrEvents {
     commandCodeReceived: (commandCode: string) => void;
     dataUpdate: (widgetId: number) => void;
     purgeAll: () => void;
+    clearStatsAndLogs: () => void;
 }
 
 export default class Xmr {
@@ -206,6 +207,8 @@ export default class Xmr {
                     this.emitter.emit('dataUpdate', message.widgetId);
                 } else if (message.action == 'purgeAll') {
                     this.emitter.emit('purgeAll');
+                } else if (message.action == 'clearStatsAndLogs') {
+                    this.emitter.emit('clearStatsAndLogs');
                 } else {
                     console.error('Xmr::message: unknown action: ' + message.action);
                 }
