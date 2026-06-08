@@ -41,6 +41,7 @@ export interface XmrEvents {
     dataUpdate: (widgetId: number) => void;
     purgeAll: () => void;
     clearStatsAndLogs: () => void;
+    triggerWebhook: (triggerCode: string) => void;
 }
 
 export default class Xmr {
@@ -56,7 +57,7 @@ export default class Xmr {
     isConnected: boolean;
     lastMessageAt: DateTime;
 
-    interval: NodeJS.Timeout | undefined;
+    interval: ReturnType<typeof setInterval> | null = null;
 
     constructor (channel: string) {
         // Emitter
@@ -188,6 +189,7 @@ export default class Xmr {
                 const message = JSON.parse(event.data);
 
                 console.debug('Xmr::message: action is ' + message.action);
+                console.debug('Xmr::message', message);
 
                 // Check the createdDt and TTL against the current date time.
                 const expiresAt = DateTime.fromISO(message.createdDt).plus({seconds: parseInt(message.ttl)});
@@ -209,6 +211,8 @@ export default class Xmr {
                     this.emitter.emit('purgeAll');
                 } else if (message.action == 'clearStatsAndLogs') {
                     this.emitter.emit('clearStatsAndLogs');
+                } else if (message.action == 'triggerWebhook') {
+                    this.emitter.emit('triggerWebhook', message.triggerCode);
                 } else {
                     console.error('Xmr::message: unknown action: ' + message.action);
                 }
