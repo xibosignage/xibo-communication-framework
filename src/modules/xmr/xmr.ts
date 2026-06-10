@@ -41,7 +41,7 @@ export interface XmrEvents {
     dataUpdate: (widgetId: number) => void;
     purgeAll: () => void;
     clearStatsAndLogs: () => void;
-    triggerWebhook: (triggerCode: string) => void;
+    triggerWebhook: (triggerCode: string, widgetId?: string) => void;
 }
 
 export default class Xmr {
@@ -212,7 +212,7 @@ export default class Xmr {
                 } else if (message.action == 'clearStatsAndLogs') {
                     this.emitter.emit('clearStatsAndLogs');
                 } else if (message.action == 'triggerWebhook') {
-                    this.emitter.emit('triggerWebhook', message.triggerCode);
+                    this.emitter.emit('triggerWebhook', message.triggerCode, message.widgetId);
                 } else {
                     console.error('Xmr::message: unknown action: ' + message.action);
                 }
